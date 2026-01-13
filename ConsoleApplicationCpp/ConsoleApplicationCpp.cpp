@@ -1,15 +1,58 @@
 #include <iostream>
+#include <bit>
+#include <bitset>
+#include <string>
+#include <algorithm>
+
 using namespace std;
+
+static int Josephus(int n, int k)
+{
+	int result = 0;
+	for (int i = 2; i <= n; i++)
+	{
+		result = (result + k) % i;
+	}
+
+	return result + 1;
+}
+
+enum Options
+{
+	Read = 1 << 0,
+	Write = 1 << 1,
+	Execute = 1 << 2,
+	Hidden = 1 << 3
+};
+
+static string DisplayBinary(int number)
+{
+	if (number == 0) {
+		cout << "0";
+	}
+	else {
+		while (number > 0) {
+			cout << (number % 2);
+			number /= 2;
+		}
+	}
+}
 
 int main()
 {
 	// Printing the size of each data type
-	cout << "Size of int: " << sizeof(int) << " bytes" << endl;
-	cout << "Size of char: " << sizeof(char) << " byte" << endl;
-	cout << "Size of float: " << sizeof(float) << " bytes" << endl;
-	cout << "Size of double: " << sizeof(double) << " bytes" << endl;
-	cout << "Size of long: " << sizeof(long) << " bytes" << endl;
-	cout << "Size of long long: " << sizeof(long long) << " bytes";
+	cout << "Size of int: " << sizeof(int) << " bytes" << endl; // 4 bytes
+	cout << "Size of unsigned int: " << sizeof(unsigned int) << " bytes" << endl; // 4 bytes
+	cout << "Size of short int: " << sizeof(short int) << " bytes" << endl; // 2 bytes
+	cout << "Size of long int: " << sizeof(long int) << " bytes" << endl; // 4 bytes
+	cout << "Size of long long int: " << sizeof(long long int) << " bytes" << endl; // 8 bytes
+	cout << "Size of char: " << sizeof(char) << " byte" << endl; // 1 byte
+	cout << "Size of float: " << sizeof(float) << " bytes" << endl; // 4 bytes
+	cout << "Size of double: " << sizeof(double) << " bytes" << endl; // 8 bytes
+	cout << "Size of long double: " << sizeof(long double) << " bytes" << endl; // 8 bytes
+	cout << "Size of long: " << sizeof(long) << " bytes" << endl; // 4 bytes
+	cout << "Size of long long: " << sizeof(long long) << " bytes" << endl; // 8 bytes
+	cout << "Size of unsigned long long: " << sizeof(unsigned long long) << " bytes" << endl; // 8 bytes
 
 	long long largeNumber = 9223372036854775807;
 	cout << "\nValue of largeNumber: " << largeNumber << endl;
@@ -80,8 +123,12 @@ int main()
 	cout << "++a = " << ++a << endl;
 
 	// Decrement
-	cout << "b-- = " << b--;
+	cout << "b-- = " << b-- << endl;
 
+	unsigned int flags = Read | Execute | Hidden;
+
+	int enabled = std::popcount(flags);
+	cout << "Dans la variable flags, en integer : " << flags << " et en binaire : " << std::bitset<8>(flags) << ", le nombre de 1 est : " << enabled << endl;
 	return 0;
 }
 
