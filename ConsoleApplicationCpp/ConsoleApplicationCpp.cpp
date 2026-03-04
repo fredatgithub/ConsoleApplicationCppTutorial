@@ -38,6 +38,77 @@ static string DisplayBinary(int number)
 	}
 }
 
+// Recursive function to calculate factorial of n
+static unsigned int factorial(unsigned int n)
+{
+	if (n == 0)
+		return 1;
+	return n * factorial(n - 1);
+}
+
+// Iterative function to calculate the sum of first n natural numbers
+static int sommiel(int n)
+{
+	int sum = 0;
+	for (int i = 1; i <= n; i++)
+		sum = sum + i;
+	return sum;
+}
+
+// Iterative function to
+// reverse digits of num
+static int reverseDigits(int num)
+{
+	int rev_num = 0;
+	while (num > 0) {
+		rev_num = rev_num * 10 + num % 10;
+		num = num / 10;
+	}
+	return rev_num;
+}
+
+// Iterative function to calculate Greater Common Divisor of a and b
+static int gcd(int a, int b) {
+	// Find Minimum of a and b
+	int res = min(a, b);
+
+// Testing divisiblity with all numbers starting from
+// min(a, b) to 1
+
+	while (res > 1) {
+
+		// If any number divide both a and b, so we
+		// got the answer
+		if (a % res == 0 && b % res == 0)
+			break;
+		res--;
+	}
+
+	return res;
+}
+
+// Recursive function to calculate Greater Common Divisor of a and b according to Euclidean algorithm
+static int euclideanGcd(int a, int b) {
+
+	// Everything divides 0
+	if (a == 0)
+		return b;
+	if (b == 0)
+		return a;
+
+	// If both numbers are equal
+	if (a == b)
+		return a;
+
+	// If a is greater
+	if (a > b)
+		return gcd(a - b, b);
+
+
+	// If b is greater
+	return gcd(a, b - a);
+}
+
 int main()
 {
 	// Printing the size of each data type
