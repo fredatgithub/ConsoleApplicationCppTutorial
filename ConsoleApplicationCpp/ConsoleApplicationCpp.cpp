@@ -55,8 +55,7 @@ static int sommiel(int n)
 	return sum;
 }
 
-// Iterative function to
-// reverse digits of num
+// Iterative function to reverse digits of num
 static int reverseDigits(int num)
 {
 	int rev_num = 0;
